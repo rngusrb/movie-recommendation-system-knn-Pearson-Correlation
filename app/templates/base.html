@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>My website</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="base.css" />
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+            .jfont{
+		     color: white;
+		     font-size:30px;
+		     font-weight: 700;
+            }
+
+            .bb{
+                background-color: black;
+                width: 2000px;
+                height: 400px;
+                text-align: center;
+                overflow:auto;
+                white-space:nowrap;
+            }
+
+            .aa{
+                display: inline-block; /* 가로로 나열하기 위해 block레벨 요소를 inline-block레벨로 전환 */
+                vertical-align: middle;
+                width: 200px; /* 영역 크기 지정 안해주면 inline 레벨처럼 내용물 만큼만 차지하기 때문에 크기 지정 */
+                height: 350px;
+                border: 2px solid;
+                margin: 5px 5px 5px 5px;
+                background: gray;
+                word-break:break-all;
+                white-space:normal;
+            }
+        </style>
+    </head>
+    <body style="background-color: black;">
+        <div style="width: 2171px; height: 54px; position : relative;">
+            <div style="display: inline-block;">
+                <a style="height: 50px;" href="{{ url_for('some_func') }}"><img src="https://dtd31o1ybbmk8.cloudfront.net/photos/ea0870f6e1293e11885ee4ad15aa0cb1/thumb.png" alt="My Image" height="50"></a>
+            </div>
+            <div style="display: inline-block; position: absolute; top: 25%; left: 5%;">
+                <a style="height: 30px; margin-bottom:10px; font-size:17px; color:white; text-decoration: none;" href="{{ url_for('some_func')}}">홈</a>
+            </div>
+            <div style="display: inline-block; position: absolute; top: 25%; left: 7%;">
+                <a style="height: 30px; margin-bottom:10px; font-size:17px; color:white; ; text-decoration: none;" href="{{ url_for('some_func')}}">TV프로그램</a>
+            </div>
+            <div style="display: inline-block; position: absolute; top: 25%; left: 12.3%;">
+                <a style="height: 30px; margin-bottom:10px; font-size:17px; color:white; ; text-decoration: none;" href="{{ url_for('some_func')}}">영화</a>
+            </div>
+            <div style="display: inline-block; position: absolute; top: 25%; left: 15%;">
+                <a style="height: 30px; margin-bottom:10px; font-size:17px; color:white; ; text-decoration: none;" href="{{ url_for('some_func')}}"> NEW! 요즘대세 콘텐츠</a>
+            </div>
+            <div style="display: inline-block; position: absolute; top: 25%; left: 24.3%;">
+                <a style="height: 30px; margin-bottom:10px; font-size:17px; color:white; ; text-decoration: none;" href="{{ url_for('some_func')}}">내가 찜한 콘텐츠</a>
+            </div>
+
+
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

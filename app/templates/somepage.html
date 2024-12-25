@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div>
+    <div style="text-align: right; margin-right: 100px;">
+        <form style="display: inline-block; text-align=right;", action="" method="POST">
+            <input type="text" name="number1">
+            <input type="submit" name="button" value="login">
+        </form>
+    </div>
+    <tr></tr>
+    <tr></tr>
+    </tr</tr>
+    {% if result %}
+    <tr></tr>
+    <tr></tr>
+    </tr</tr>
+    <p class="jfont" style="height: 30px; margin: 30px 5px 5px 35px; padding: 5px 5px 5px 10px;"> 사용자와 비슷한 직업군의 사람들이 봤어요</p>
+    <div class="bb" style="padding: 5px 5px 5px 10px; margin-left: 30px;">
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w1280/9ASmg9EvWkt90dwW9YKO3NXQk8d.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][0][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/e8ie1x22wFEo63LQBbpBDqIH4oY.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][1][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/chUZNPNd7EiETSB4xBGykXhuXRr.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][2][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/dl4zl57whPUYyq4ImcHjLVwD7qS.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[0][3][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w1280/9ASmg9EvWkt90dwW9YKO3NXQk8d.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[0][4][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/34fPI0phWQ189lc5O7aNf12jWPm.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][5][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vBfvtwMWiYMS6FmvHaALDYRJPLJ.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][6][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sRRdVLuxk8OLCDRd4u4xDrDdwv7.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[0][7][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qMm3uO4Yq95cppuh9uzICiu4Twh.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[0][8][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mQRIdnJwLyzRJMve7IjRA6lEmuI.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[0][9][0] }}
+			</div>
+        </div>
+    </div>
+    <tr></tr>
+    <p class="jfont" style="height: 30px; margin: 30px 5px 5px 35px; padding: 5px 5px 5px 10px;"> 사용자와 비슷한 나이대 사람들이 봤어요</p>
+    <div class="bb" style="padding: 5px 5px 5px 10px; margin-left: 30px;">
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/jYDSEJYcvSI0LzwIEP1JWMMAbWh.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][0][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xtJfxmlIe3iRFFTP4TNFRwacVz.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][1][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/muD7qu9UagO08dZBout1YXwdE6a.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][2][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ldxrT4FkyJWENpqy0ZucCu1HgAj.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[1][3][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/e8ie1x22wFEo63LQBbpBDqIH4oY.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[1][4][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/srnvpaAg83sfYr82meDe6k1nDd.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][5][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/faHxYNlQ7RGDtqmaNBpFf0HKozg.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][6][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/3jtG9mgfiZRTRQf19BiUAY6QPN3.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[1][7][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aNiWJ2C8Amrun55JCvuvGEPIXli.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[1][8][0] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w188_and_h282_bestv2/606IorDjRMQZYaEdPBvjM8uI6qm.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[1][9][0] }}
+			</div>
+        </div>
+    </div>
+    <tr></tr>
+    <p class="jfont" style="height: 30px; margin: 30px 5px 5px 35px; padding: 5px 5px 5px 10px;"> 사용자 추천 영화</p>
+    <div class="bb" style="padding: 5px 5px 5px 10px; margin-left: 30px;">
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/hotrLt8Hyuj2V7xX9EyS4PVqmZO.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][0][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/sQAN50v0vlJx4Kyra3wsz7gSE8M.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][1][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oOUqXIOoIPMiTuTN7almDNb3ARk.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][2][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/9t0hyTI7HTB6JSIecUNODrtBvwa.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[2][3][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gBcXhSwGq3MKl7HFpaTtK35pHPa.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[2][4][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/orYPEKHsB734AFFINcCbjT57Ifa.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][5][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/oyyUcGwLX7LTFS1pQbLrQpyzIyt.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][6][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/quszlUONTUqKlfm8PnsMJKgSiL9.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%;color: white;">
+                {{ result[2][7][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uw26mSTaA10hg2yuQfNaFLSeY3h.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[2][8][1] }}
+			</div>
+        </div>
+        <div class="aa" style="position : relative;" >
+            <div class="jb-image"><img  style="position: absolute; top:0; left: 0; width: 100%;" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/zmbPjkZhlnt0JEOU9xMYtbjNXuL.jpg" alt="My Image"></div>
+			<div style="position: absolute; top:305; left: 20; width: 80%; color: white;">
+                {{ result[2][9][1] }}
+			</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
