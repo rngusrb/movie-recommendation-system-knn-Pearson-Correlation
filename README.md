@@ -1,145 +1,105 @@
-# movie recommendation system
+# 영화 추천 시스템 (Flask 기반)
 
-![image](https://github.com/user-attachments/assets/fad3f061-f70a-450f-b930-22a7d31aeb3d)
+사용자의 ID를 기반으로 **직업 기반 추천, 나이대 기반 추천, KNN 기반 개인화 추천**을 수행하는 간단한 웹 영화 추천 시스템입니다.
 
+---
 
+## 프로젝트 개요
+- 사용자 정보를 입력 받아 추천 수행
+- MySQL 데이터베이스를 기반으로 사용자 정보와 영화 정보를 연동
+- KNN 기반 개인화 추천: 피어슨 상관계수를 기반으로 유사 사용자 예측
+- Flask 웹 프레임워크를 활용한 간단한 웹 UI 구성
 
-## 초기설정
+---
 
-### Requirements
-- python
-- Flask
-- MySQL
-- html
+## 주요 기능
 
-## 1. 입력 받은 dataid를 통해 사용자의 직업과 같은 사람들이 가장 좋아하는 무비 10개  추천
+### 1. 직업 기반 영화 추천
+- 입력받은 사용자 ID로 해당 사용자의 직업을 조회
+- 동일 직업군 유저들이 평균적으로 높은 평점을 준 영화 10개 추천
+
+### 2. 나이대 기반 영화 추천
+- 사용자 ID를 통해 나이 정보를 조회
+- 해당 사용자의 나이대(10대, 20대 등) 사용자들이 선호한 영화 10개 추천
+
+### 3. KNN 기반 개인화 추천
+- 사용자와 유사한 40명의 다른 사용자와의 **피어슨 상관계수**를 기반으로 유사도 계산
+- 유사 사용자들이 높게 평가한 영화 중, 현재 사용자가 보지 않은 영화 중 예상 평점이 높은 영화 10개 추천
+
+---
+
+## 사용 기술 및 설명
+
+### Python
+- 전체 프로그램 로직 구현 언어로 사용
+- Pandas와 Numpy를 활용한 데이터 처리 및 계산 수행
+
+### Flask
+- Python 기반 웹 프레임워크
+- 사용자로부터 ID를 입력받고 추천 결과를 웹 페이지에 출력
+- Jinja2 템플릿 엔진을 사용해 HTML과 연동
+
+### MySQL
+- 사용자 정보(user), 영화 정보(movie), 평가 정보(ratings)를 저장
+- SQL 쿼리를 통해 특정 유저의 직업/나이 및 평점 정보를 조회하고 추천 로직에 활용
+
+### Pandas 기반 KNN 알고리즘
+- `pivot_table`을 통해 사용자-영화 평점 행렬 생성
+- 피어슨 상관계수를 기반으로 다른 사용자와의 유사도 계산
+- 유사 사용자로부터 보지 않은 영화의 예상 평점 계산
+- 예상 평점이 높은 영화 상위 10개를 추천
+
+#### 피어슨 상관계수 계산 방식
+- 공통적으로 본 영화에 대해 A, B 유저 간의 평점 벡터를 비교
+- 분산과 공분산을 이용한 수식으로 상관관계 계산
+- 분모 0 방지를 위해 작은 epsilon 값 추가
+
+---
+
+## 디렉토리 구조
 ```
- sql0 = "SELECT occupation FROM user WHERE userid="+str(num1)+";"
-cur.execute(sql0)
-rows = cur.fetchall()[0][0]
-----rows에 데이터베이스를 통한 직업 데이터 받기.
-
-sql2 = "select movieTitle,avg(ratingScore) as ratingScore 
-from user natural join ratings natural join movie 
-----user, movie, rating natural join을 한다.
-where occupation='"+str(rows)+
-----아까 받은 rows의 직업 데이터를 이용하여 해당 유저의 직업을 가진 데이터로 한정
-"' group by movieid 
-----movie id로 묶고
-order by ratingScore desc,movieId desc limit 10;"
-----평점순 10개만 출력
-
-cur.execute(sql2)
-result=cur.fetchall()
-----result에 저장
-```
-
-
-## 2.입력 받은 dataid를 통해 사용자의 나이대(10’s, 20’s, 30’s, 40’s, 50’s, …)와 같은 사람들의 가장 좋아하는 무비 10개  추천
-```
-sql3="SELECT age FROM user WHERE userid="+str(num1)+";"
-cur.execute(sql3)
-age = int(cur.fetchall()[0][0])
-----age에 데이터베이스를 통한 나이 데이터 받기.
-
-min_age=math.floor(age/10)*10)
-----1의 자리 버림을 통한 (10’s, 20’s, 30’s, 40’s, 50’s, …)결정
-max_age=min_age+10
-----+10 (ex)10-20같은 범위 결정
-
-sql4="select movieTitle,avg(ratingScore) as ratingScore 
-from user natural join ratings natural join movie 
-----user, movie, rating natural join을 한다.
-where "+str(min_age)+" <=age and age < "+str(max_age)+" 
-----자신의 나이대에 속하는 나이대의 데이터만 남긴다
-"' group by movieid 
-----movie id로 묶고
-order by ratingScore desc,movieId desc limit 10;"
-----평점순 10개만 출력
-cur.execute(sql4)
-result2=cur.fetchall()
-----result2에 저장
-```
-
-## 3.knn 추천 알고리즘(K=40, 피어슨 상관계수, 유저 기반)
- ![image](https://github.com/user-attachments/assets/8815e96b-4ec5-489d-8366-db78f0ff6b9f)
-```
-----다른사람과 유사도 검사를 통해 영화 추천을 받는 유저(A)를 userid로 넣는다
-def cosim(userid, dataframe):
-    movies = []
-    for i in dataframe.loc[userid, :].index:
-        if math.isnan(dataframe.loc[userid, i]) == False:
-            movies.append(i)
-----movies에 유사도 검사유저가 본 영화 저장
-    U_df = pd.DataFrame(dataframe.loc[userid, movies]).T
-----U_df 유저가 유저가 본 영화에 대한 평점을 데이터 프레임에 저장
-    other_df = dataframe.loc[:, movies].drop(userid, axis=0)
-----other_df에는 다른 모든 유저가 유저가 본 영화에 대한 평점을 데이터 프레임에 저장
-    sim_dict = {}
-    for user in other_df.index:
-----다른 유저 집합중 한 유저 선택(B)
-        u_list = []
-        df_list = []
-        ch1 = 0
-        pa1 = 0
-        pa2 = 0
-        sm = [m for m in U_df.columns if math.isnan(other_df.loc[user, m]) ==
-False]
-----다른 유저(B)가 유저(A)가 본 영화를 전부 보지 못 했기 때문에 NaN이 아닌 영화만 sm에 저장
-        for i in U_df.loc[userid, sm].values:
-            u_list.append(i)
----- sm에 있는 영화(유저(A)가 본 영화)에 대한 유저(A)의 평가를 u_list에 순서대로 저장
-        for i in other_df.loc[user, sm].values:
-            df_list.append(i)
----- sm에 있는 영화(유저(A)가 본 영화)에 대한 다른 유저(B)의 평가를 df_list에 순서대로 저장
-        for i in range(len(sm)):
-            ch1 += (u_list[i] * df_list[i])
-            pa1 += u_list[i] * u_list[i]
-            pa2 += df_list[i] * df_list[i]
-        ch2 = sum(u_list) * sum(df_list)
-        pa3 = (pa1 - sum(u_list) * sum(u_list) / (len(sm) + 0.000000001)) * (
-                    pa2 - sum(df_list) * sum(df_list) / (len(sm) + 0.000000001))
-        result = (ch1 - ch2 / (len(sm) + 0.000000001)) / ((pow(pa3, 1 / 2) + 0.000000001))
-```
-![image](https://github.com/user-attachments/assets/a97bdd6c-42c0-415a-bd92-01c99a2f2e47)
-
-```
----- 피어슨 상관 계수(아래 우측 이미지)를 좌측 같이 변형하여 계산하는 과정, 분모가 0이 되는 것을 고려하여 0.000000001추가
-        sim_dict[user] = result
-----sim_dict에 다른 유저(B)의 userid와 해당 유저와 유저(A)와의 상관 계수를 딕셔너리로 저장
-    ''''''
-    sim_mat = sorted(sim_dict.items(), key=operator.itemgetter(1), reverse=True)[:40]
-----sim_mat에는 모든 다른 유저와의 상관 계수 중 k=40임으로 상위 40명을 저장
-```
-![image](https://github.com/user-attachments/assets/3b983ac6-b939-441f-9772-334537abb001)
-
-```
-----knn계산과정----
-    recommend_list = list(set(dataframe.columns) - set(U_df.columns))
----- 유저(A)가 안본 영화 리스트를 recommend_list 저장 
-    others_k = [i[0] for i in sim_mat]
----- 유사도 높은 40명의 userid를 저장
-    recommender = dict()
-    for movie in recommend_list:
----- 영화 하나를 결정
-        rating = []
-        sim = []
-        for person in others_k:
-            if math.isnan(dataframe.loc[person, movie]) == False:
-                rating.append(dataframe.loc[person, movie])
-                sim.append(sim_dict[person])
----- 다른 유저 한 명씩 불러오고 위에서 결정된 영화를 해당 유저가 봤다면 영화 평점과 유사도 데이터를 순서대로 rating,sim에 저장
-
-        aa = len(rating)
-        use_sum = 0
-        for i in range(aa):
-            use_sum += sim[i] * rating[i]
-        pred = use_sum / (sum(sim) + 0.0000001)
-        recommender[movie] = pred
-----아래 계산대로 유저(A)가 안 본 영화의 예상 평점을 recommender dict에 저장
-    return sorted(recommender.items(), key=operator.itemgetter(1), reverse=True)[:10]
----- recommender dict에서 평점 높은 10개 영화 출력
+.
+├── app/
+│   ├── __init__.py
+│   ├── routes.py
+│   ├── main/
+│   │   ├── index.py
+│   └── templates/
+│       ├── base.html
+│       ├── index.html
+│       └── somepage.html
+├── run.py
+├── README.md
 ```
 
+---
+
+## 실행 방법
+1. MySQL DB 구성 및 테이블(user, ratings, movie) 준비
+2. Flask 서버 실행
+```bash
+python run.py
+```
+3. 웹 브라우저에서 `http://localhost:5000` 접속 후, 사용자 ID 입력하여 추천 결과 확인
+
+---
+
+## 기타 사항
+- 추천 결과는 텍스트 기반 출력이며, 영화 이미지는 고정 이미지를 사용함
+- 추가 페이지 없이 메인 화면에서 모든 추천 기능 제공
+
+---
+
+## 팀 정보
+- 구현규 (12194114)
+
+---
+
+## 참고 사항
+- 추천 알고리즘의 수학적 기반: 피어슨 상관계수 기반 협업 필터링
+- 복잡한 알고리즘 없이 데이터 연산 위주로 구성하여 간단히 구현
+- HTML은 Flask 템플릿 구조를 사용하여 최소한의 UI 제공
+
+(추가적인 코드 예시는 문서 또는 코드 주석에 포함되어 있음)
 
 
